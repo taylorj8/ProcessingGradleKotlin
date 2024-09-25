@@ -6,7 +6,7 @@ import java.io.File
 class Processing : PApplet() {
     private lateinit var cities: List<City>
     private lateinit var temps: List<Temp>
-    private lateinit var survivors: List<Survivors>
+    private lateinit var survivors: List<List<Survivors>>
 
     override fun settings() {
         size(1600, 800, JAVA2D)
@@ -45,18 +45,19 @@ class Processing : PApplet() {
 //        }
 
         // draw line showing path of survivors with variable line length based on number of survivors
-        for (i in 0 until survivors.size - 1) {
-            val start = survivors[i]
-            val end = survivors[i + 1]
+        for (division in survivors) {
+            for (i in 0 until division.size - 1) {
+                val start = division[i]
+                val end = division[i + 1]
 
 
-            // vary colour based on survivor count
-            val red = map(start.survivors.toFloat(), 4000f, 340000f, 0f, 255f)
-            stroke(red, 50f, 50f)
-            strokeWeight(map(start.survivors.toFloat(), 4000f, 340000f, 2f, 50f))
-            line(start.lon.lonToPixelLocation(), start.lat.latToPixelLocation(), end.lon.lonToPixelLocation(), end.lat.latToPixelLocation())
+                // vary colour based on survivor count
+                val red = map(start.survivors.toFloat(), 4000f, 340000f, 0f, 255f)
+                stroke(red, 50f, 50f)
+                strokeWeight(map(start.survivors.toFloat(), 4000f, 340000f, 2f, 50f))
+                line(start.lon.lonToPixelLocation(), start.lat.latToPixelLocation(), end.lon.lonToPixelLocation(), end.lat.latToPixelLocation())
+            }
         }
-
     }
 
     private fun Float.lonToPixelLocation(): Float {

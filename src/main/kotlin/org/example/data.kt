@@ -48,7 +48,7 @@ fun readTemps(file: File): List<Temp> {
         }.toList()
 }
 
-fun readSurvivors(file: File): List<Survivors> {
+fun readSurvivors(file: File): List<List<Survivors>> {
     val inputStream = file.inputStream()
     val reader = inputStream.bufferedReader()
     reader.readLine()
@@ -57,5 +57,5 @@ fun readSurvivors(file: File): List<Survivors> {
         .map {
             val (lon, lat, survivors, direction, division) = it.split(',', ignoreCase = false, limit = 5)
             Survivors(lon.toFloat(), lat.toFloat(), survivors.toInt(), direction.first(), division.toInt())
-        }.toList()
+        }.groupBy { it.division }.values.toList()
 }
