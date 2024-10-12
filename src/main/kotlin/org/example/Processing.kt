@@ -21,16 +21,21 @@ class Processing : PApplet() {
         map = loadImage("data/map.png")
 
         textAlign(CENTER)
-    }
+        rectMode(CENTER)
+        textSize(13f)
 
-    override fun draw() {
         background(215f, 195f, 160f)
         val graphHeight = height - 350f
         val graphSpacing = 6f
 
         Legend().draw(this, map, graphHeight, graphSpacing)
 
+        textSize(13f)
         Charts(width, height).draw(this, cities, temps, survivors, graphHeight, graphSpacing)
+    }
+
+    override fun draw() {
+
 
 
 //        for (division in survivors) {
