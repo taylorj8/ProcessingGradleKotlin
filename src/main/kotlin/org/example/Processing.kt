@@ -11,7 +11,7 @@ class Processing : PApplet() {
     private lateinit var map: PImage
 
     override fun settings() {
-        size(1600, 800, JAVA2D)
+        size(1600, 900, JAVA2D)
     }
 
     override fun setup() {
@@ -25,25 +25,13 @@ class Processing : PApplet() {
         textSize(13f)
 
         background(215f, 195f, 160f)
-        val graphHeight = height - 350f
+        val graphHeight = 450f
         val graphSpacing = 6f
 
         Legend().draw(this, map, graphHeight, graphSpacing)
 
         textSize(13f)
         Charts(width, height).draw(this, cities, temps, survivors, graphHeight, graphSpacing)
-    }
-
-    override fun draw() {
-
-
-
-//        for (division in survivors) {
-//            for ((s1, s2) in division.zipWithNext()) {
-//                val angle = atan2(s2.lat - s1.lat, s2.lon - s1.lon)
-//                drawArrow(s1.lon.lonToPixelLocation(), s1.lat.latToPixelLocation(), 20f, angle)
-//            }
-//        }
     }
 
     private fun drawArrow(x: Float, y: Float, size: Float, angle: Float) {

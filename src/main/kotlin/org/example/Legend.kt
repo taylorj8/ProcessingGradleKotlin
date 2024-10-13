@@ -13,7 +13,7 @@ class Legend {
         for (i in 0 downTo -30 step 5) {
             line(400f, graphHeight - i * graphSpacing, width.toFloat(), graphHeight - i * graphSpacing)
             fill(0f, 0f, 0f)
-            text("${i}°", 415f, graphHeight - i * graphSpacing - 3)
+            text("${i}°C", 417f, graphHeight - i * graphSpacing - 3)
         }
 
         // draw map image in box
@@ -72,14 +72,6 @@ class Legend {
         textSize(22f)
         text("Divisions", 200f, 165f)
 
-        noFill()
-        stroke(0f, 0f, 0f)
-        strokeWeight(2f)
-
-        rect(75f, 210f, 100f, 35f)
-        rect(200f, 210f, 100f, 35f)
-        rect(325f, 210f, 100f, 35f)
-
         strokeWeight(1f)
         fill(250f, 150f, 175f)
         rect(50f, 210f, 50f, 35f)
@@ -101,6 +93,55 @@ class Legend {
         text("1st", 75f, 255f)
         text("2nd", 200f, 255f)
         text("3rd", 325f, 255f)
+
+        noFill()
+        stroke(0f, 0f, 0f)
+        strokeWeight(2f)
+
+        rect(75f, 210f, 100f, 35f)
+        rect(200f, 210f, 100f, 35f)
+        rect(325f, 210f, 100f, 35f)
+    }
+
+    private fun PApplet.direction() {
+        fill(0f, 0f, 0f)
+        textSize(22f)
+        text("Direction", 200f, 300f)
+
+        strokeWeight(1f)
+        stroke(0f, 0f, 0f)
+
+        strokeWeight(0f)
+        fill(250f, 150f, 175f)
+        rect(68f, 345f, 70f, 35f, 17.5f)
+
+        fill(175f, 250f, 150f)
+        rect(148f, 345f, 70f, 35f, 17.5f)
+
+        fill(150f, 175f, 250f)
+        rect(108f, 345f, 50f, 35f)
+
+
+        fill(125f, 75f, 87.5f)
+        rect(252f, 345f, 70f, 35f, 17.5f)
+
+        fill(87.5f, 125f, 75f)
+        rect(332f, 345f, 70f, 35f, 17.5f)
+
+        fill(75f, 87.5f, 125f)
+        rect(292f, 345f, 50f, 35f)
+
+
+        strokeWeight(2.5f)
+        noFill()
+        rect(108f, 345f, 150f, 35f, 17.5f)
+        stroke(255f, 255f, 255f)
+        rect(292f, 345f, 150f, 35f, 17.5f)
+
+        textSize(16f)
+        fill(0f, 0f, 0f)
+        text("Attacking", 108f, 388f)
+        text("Retreating", 292f, 388f)
     }
 
     fun draw(applet: PApplet, map: PImage, graphHeight: Float, graphSpacing: Float) {
@@ -109,6 +150,7 @@ class Legend {
             dividers()
             survivorLegend()
             divisions()
+            direction()
         }
     }
 }

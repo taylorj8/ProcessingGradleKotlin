@@ -11,9 +11,8 @@ data class City(
 data class Temp(
     val lon: Float,
     val temperature: Int,
-    val days: Int,
-    val month: String,
-    val date: Int
+    val month: String?,
+    val date: String?
 )
 
 data class Survivors(
@@ -26,8 +25,8 @@ data class Survivors(
 
 fun readCities(file: File): List<City> {
     val inputStream = file.inputStream()
-    val reader = inputStream.bufferedReader()
-    reader.readLine()
+    val reader = inputStream.bufferedReader().apply { readLine() }
+
     return reader.lineSequence()
         .filter { it.isNotBlank() }
         .map {
@@ -38,20 +37,20 @@ fun readCities(file: File): List<City> {
 
 fun readTemps(file: File): List<Temp> {
     val inputStream = file.inputStream()
-    val reader = inputStream.bufferedReader()
-    reader.readLine()
+    val reader = inputStream.bufferedReader().apply { readLine() }
+
     return reader.lineSequence()
         .filter { it.isNotBlank() }
         .map {
-            val (lon, temp, days, month, date) = it.split(',', ignoreCase = false, limit = 5)
-            Temp(lon.toFloat(), temp.toInt(), days.toInt(), month.ifEmpty { "" }.trim(), date.ifEmpty{ "-1" }.toInt())
+            val (lon, temp, _, month, date) = it.split(',', ignoreCase = false, limit = 5)
+            Temp(lon.toFloat(), temp.toInt(), month.ifEmpty { null }, date.ifEmpty{ null})
         }.toList()
 }
 
 fun readSurvivors(file: File): List<List<Survivors>> {
     val inputStream = file.inputStream()
-    val reader = inputStream.bufferedReader()
-    reader.readLine()
+    val reader = inputStream.bufferedReader().apply { readLine() }
+
     return reader.lineSequence()
         .filter { it.isNotBlank() }
         .map {

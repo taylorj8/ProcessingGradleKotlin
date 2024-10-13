@@ -48,7 +48,6 @@ class Charts(private val width: Int, private val height: Int) {
         }
     }
 
-
     private fun PApplet.tempChart(temps: List<Temp>, graphHeight: Float, graphSpacing: Float) {
         // draw line chart under the cities representing temperature
         for ((t1, t2) in temps.zipWithNext()) {
@@ -67,6 +66,15 @@ class Charts(private val width: Int, private val height: Int) {
             // draw temperature label
             fill(0f, 0f, 0f)
             text("${temp.temperature}°", temp.lon.lonToPixelLocation(), graphHeight - tempOffset + 20)
+
+            // draw date label
+            temp.month?.let {
+                noStroke()
+                fill(215f, 195f, 160f)
+                rect(temp.lon.lonToPixelLocation(), graphHeight - 20, 20f, 20f)
+                fill(0f, 0f, 0f)
+                text("${temp.month} ${temp.date}", temp.lon.lonToPixelLocation(), graphHeight - 16)
+            }
         }
     }
 
