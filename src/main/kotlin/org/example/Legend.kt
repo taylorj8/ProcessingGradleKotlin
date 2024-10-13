@@ -2,33 +2,8 @@ package org.example
 
 import processing.core.PApplet
 import processing.core.PApplet.map
-import processing.core.PImage
 
 class Legend {
-
-    private fun PApplet.mapBackground(map: PImage, graphHeight: Float, graphSpacing: Float) {
-        // draw graph lines
-        stroke(100f, 100f, 100f)
-        strokeWeight(1.5f)
-        for (i in 0 downTo -30 step 5) {
-            line(400f, graphHeight - i * graphSpacing, width.toFloat(), graphHeight - i * graphSpacing)
-            fill(0f, 0f, 0f)
-            text("${i}°C", 417f, graphHeight - i * graphSpacing - 3)
-        }
-
-        // draw map image in box
-        image(map, 400f, 0f, width.toFloat(), 400f)
-    }
-
-    // draw dividing lines
-    private fun PApplet.dividers() {
-        stroke(0f, 0f, 0f)
-        strokeWeight(2f)
-        line(0f, 400f, width.toFloat(), 400f)
-        line(400f, 0f, 400f, 630f)
-        line(0f, 133f, 400f, 134f)
-        line(0f, 267f, 400f, 267f)
-    }
 
     // draw survivor count legend
     private fun PApplet.survivorLegend() {
@@ -70,23 +45,20 @@ class Legend {
     private fun PApplet.divisions() {
         fill(0f, 0f, 0f)
         textSize(22f)
-        text("Divisions", 200f, 165f)
+        text("Army Divisions", 200f, 165f)
 
-        strokeWeight(1f)
-        fill(250f, 150f, 175f)
-        rect(50f, 210f, 50f, 35f)
-        fill(125f, 75f, 87.5f)
-        rect(100f, 210f, 50f, 35f)
-
-        fill(150f, 175f, 250f)
-        rect(175f, 210f, 50f, 35f)
-        fill(75f, 87.5f, 125f)
-        rect(225f, 210f, 50f, 35f)
-
-        fill(175f, 250f, 150f)
-        rect(300f, 210f, 50f, 35f)
-        fill(87.5f, 125f, 75f)
-        rect(350f, 210f, 50f, 35f)
+//        strokeWeight(1f)
+//        rect(50f, 210f, 50f, 35f)
+//        fill(125f, 75f, 87.5f)
+//        rect(100f, 210f, 50f, 35f)
+//
+//        rect(175f, 210f, 50f, 35f)
+//        fill(75f, 87.5f, 125f)
+//        rect(225f, 210f, 50f, 35f)
+//
+//        rect(300f, 210f, 50f, 35f)
+//        fill(87.5f, 125f, 75f)
+//        rect(350f, 210f, 50f, 35f)
 
         textSize(16f)
         fill(0f, 0f, 0f)
@@ -94,12 +66,15 @@ class Legend {
         text("2nd", 200f, 255f)
         text("3rd", 325f, 255f)
 
-        noFill()
         stroke(0f, 0f, 0f)
         strokeWeight(2f)
 
+
+        fill(250f, 150f, 175f)
         rect(75f, 210f, 100f, 35f)
+        fill(150f, 175f, 250f)
         rect(200f, 210f, 100f, 35f)
+        fill(175f, 250f, 150f)
         rect(325f, 210f, 100f, 35f)
     }
 
@@ -144,10 +119,8 @@ class Legend {
         text("Retreating", 292f, 388f)
     }
 
-    fun draw(applet: PApplet, map: PImage, graphHeight: Float, graphSpacing: Float) {
+    fun draw(applet: PApplet) {
         applet.run {
-            mapBackground(map, graphHeight, graphSpacing)
-            dividers()
             survivorLegend()
             divisions()
             direction()

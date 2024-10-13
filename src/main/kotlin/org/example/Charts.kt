@@ -5,8 +5,11 @@ import processing.core.PApplet.map
 
 class Charts(private val width: Int, private val height: Int) {
 
+    private val graphHeight = 450f
+    private val graphSpacing = 6f
+
     // draw lines connecting temperature graph to movement chart
-    private fun PApplet.tempLines(temps: List<Temp>, survivors: List<List<Survivors>>, graphHeight: Float, graphSpacing: Float) {
+    private fun PApplet.tempLines(temps: List<Temp>, survivors: List<List<Survivors>>) {
         stroke(150f, 150f, 150f)
         for (temp in temps) {
             val survivorsList = survivors.flatten()
@@ -38,8 +41,7 @@ class Charts(private val width: Int, private val height: Int) {
             }
 
             for ((start, end) in division.zipWithNext()) {
-                val x = if (start.direction == 'A') 1f else 0.5f
-                stroke(color.first * x, color.second * x, color.third * x)
+                stroke(color.first, color.second, color.third)
                 strokeWeight(map(start.survivors.toFloat(), 4000f, 340000f, 1.5f, 40f))
                 line(start.lon.lonToPixelLocation(), start.lat.latToPixelLocation(), end.lon.lonToPixelLocation(), end.lat.latToPixelLocation())
             }
@@ -48,7 +50,16 @@ class Charts(private val width: Int, private val height: Int) {
         }
     }
 
-    private fun PApplet.tempChart(temps: List<Temp>, graphHeight: Float, graphSpacing: Float) {
+    private fun PApplet.tempChart(temps: List<Temp>) {
+        // draw graph lines
+        stroke(100f, 100f, 100f)
+        strokeWeight(1.5f)
+        for (i in 0 downTo -35 step 5) {
+            line(400f, graphHeight - i * graphSpacing, width.toFloat(), graphHeight - i * graphSpacing)
+            fill(0f, 0f, 0f)
+            text("${i}°C", 418f, graphHeight - i * graphSpacing - 3)
+        }
+
         // draw line chart under the cities representing temperature
         for ((t1, t2) in temps.zipWithNext()) {
             // draw line connecting the temperature points
@@ -105,11 +116,11 @@ class Charts(private val width: Int, private val height: Int) {
         return Triple(second, third, first)
     }
 
-    fun draw(applet: PApplet, cities: List<City>, temps: List<Temp>, survivors: List<List<Survivors>>, graphHeight: Float, graphSpacing: Float) {
+    fun draw(applet: PApplet, cities: List<City>, temps: List<Temp>, survivors: List<List<Survivors>>) {
         applet.run {
-            tempLines(temps, survivors, graphHeight, graphSpacing)
+            tempLines(temps, survivors)
             survivorPath(survivors)
-            tempChart(temps, graphHeight, graphSpacing)
+            tempChart(temps)
             cities(cities)
         }
     }
