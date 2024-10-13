@@ -67,6 +67,13 @@ class Charts(private val width: Int, private val height: Int) {
             line(t1.lon.lonToPixelLocation(), graphHeight - t1.temperature * graphSpacing, t2.lon.lonToPixelLocation(), graphHeight - t2.temperature * graphSpacing)
         }
 
+        // draw temperature graph title
+        fill(255f, 245f, 215f)
+        rect(1425f, 600f, 290f, 60f, 15f)
+        fill(0f, 0f, 0f)
+        textSize(27f)
+        text("Temperature on retreat", 1425f, 609f)
+
         for (temp in temps) {
             val tempOffset = temp.temperature * graphSpacing
 
@@ -77,6 +84,7 @@ class Charts(private val width: Int, private val height: Int) {
 
             // draw temperature label
             fill(0f, 0f, 0f)
+            textSize(15f)
             text("${temp.temperature}°", temp.lon.lonToPixelLocation(), graphHeight - tempOffset + 20)
 
             // draw date label

@@ -70,25 +70,8 @@ class Legend {
         textSize(22f)
         text("Direction", 200f, 300f)
 
-        strokeWeight(1f)
-        stroke(0f, 0f, 0f)
-
-        strokeWeight(0f)
-        fill(250f, 150f, 175f)
-        rect(68f, 345f, 70f, 35f, 17.5f)
-        rect(252f, 345f, 70f, 35f, 17.5f)
-
-        fill(175f, 250f, 150f)
-        rect(148f, 345f, 70f, 35f, 17.5f)
-        rect(332f, 345f, 70f, 35f, 17.5f)
-
-        fill(150f, 175f, 250f)
-        rect(108f, 345f, 50f, 35f)
-        rect(292f, 345f, 50f, 35f)
-
-
         strokeWeight(2.5f)
-        noFill()
+        fill(150f, 150f, 150f)
         rect(108f, 345f, 150f, 35f, 17.5f)
         stroke(255f, 255f, 255f)
         rect(292f, 345f, 150f, 35f, 17.5f)
