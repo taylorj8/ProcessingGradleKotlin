@@ -25,7 +25,7 @@ class Processing : PApplet() {
         textAlign(CENTER)
         rectMode(CENTER)
         imageMode(CENTER)
-        textSize(13f)
+        textSize(15f)
 
         Charts(width, height).draw(this, cities, temps, survivors)
         Legend().draw(this)

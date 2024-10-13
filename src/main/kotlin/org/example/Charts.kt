@@ -57,7 +57,7 @@ class Charts(private val width: Int, private val height: Int) {
         for (i in 0 downTo -35 step 5) {
             line(400f, graphHeight - i * graphSpacing, width.toFloat(), graphHeight - i * graphSpacing)
             fill(0f, 0f, 0f)
-            text("${i}°C", 418f, graphHeight - i * graphSpacing - 3)
+            text("${i}°C", 420f, graphHeight - i * graphSpacing - 4)
         }
 
         // draw line chart under the cities representing temperature
@@ -66,6 +66,7 @@ class Charts(private val width: Int, private val height: Int) {
             stroke(0f, 0f, 0f)
             line(t1.lon.lonToPixelLocation(), graphHeight - t1.temperature * graphSpacing, t2.lon.lonToPixelLocation(), graphHeight - t2.temperature * graphSpacing)
         }
+
         for (temp in temps) {
             val tempOffset = temp.temperature * graphSpacing
 
@@ -84,7 +85,14 @@ class Charts(private val width: Int, private val height: Int) {
                 fill(215f, 195f, 160f)
                 rect(temp.lon.lonToPixelLocation(), graphHeight - 20, 20f, 20f)
                 fill(0f, 0f, 0f)
-                text("${temp.month} ${temp.date}", temp.lon.lonToPixelLocation(), graphHeight - 16)
+
+                // offset date label for better readability
+                val offset = when (temp.date) {
+                    "1" -> 3f
+                    "6" -> -3f
+                    else -> 0f
+                }
+                text("${temp.month} ${temp.date}", temp.lon.lonToPixelLocation() + offset, graphHeight - 16)
             }
         }
     }
@@ -96,8 +104,12 @@ class Charts(private val width: Int, private val height: Int) {
             stroke(0f, 0f, 0f)
             ellipse(city.lon.lonToPixelLocation(), city.lat.latToPixelLocation(), 10f, 10f)
 
+            textSize(15f)
             fill(255f, 255f, 255f)
-            text(city.name, city.lon.lonToPixelLocation(), city.lat.latToPixelLocation() - 10)
+            // offset names for better readability
+            val xOffset = if (city.name == "Molodexno") 15f else 0f
+            val yOffset = if (city.name == "Smorgoni") -18f else -10f
+            text(city.name, city.lon.lonToPixelLocation() + xOffset, city.lat.latToPixelLocation() + yOffset)
         }
     }
 

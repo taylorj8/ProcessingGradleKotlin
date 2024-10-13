@@ -13,7 +13,7 @@ class Legend {
 
         // scale
         fill(0f, 0f, 0f)
-        textSize(13f)
+        textSize(15f)
         text("340,000", 35f, 125f)
         text("256,000", 109f, 125f)
         text("172,000", 198f, 125f)
@@ -23,7 +23,7 @@ class Legend {
         // draw scale lines
         stroke(50f, 50f, 50f)
         strokeWeight(1f)
-        line(20f, 115f, 20f, 75f)
+        line(32f, 115f, 32f, 75f)
         line(109f, 115f, 109f, 75f)
         line(198f, 115f, 198f, 75f)
         line(287f, 115f, 287f, 75f)
@@ -35,7 +35,8 @@ class Legend {
             val thickness = map(i.toFloat(), 0f, 360f, 44f, 4f)
             ellipse(x.toFloat(), 75f, thickness, thickness)
         }
-        fill(150f, 100f, 200f)
+        fill(150f, 150f, 150f)
+//        fill(150f, 100f, 200f)
         for ((i, x) in (40..375).withIndex()) {
             val thickness = map(i.toFloat(), 0f, 360f, 40f, 1f)
             ellipse(x.toFloat(), 75f, thickness, thickness)
@@ -47,28 +48,8 @@ class Legend {
         textSize(22f)
         text("Army Divisions", 200f, 165f)
 
-//        strokeWeight(1f)
-//        rect(50f, 210f, 50f, 35f)
-//        fill(125f, 75f, 87.5f)
-//        rect(100f, 210f, 50f, 35f)
-//
-//        rect(175f, 210f, 50f, 35f)
-//        fill(75f, 87.5f, 125f)
-//        rect(225f, 210f, 50f, 35f)
-//
-//        rect(300f, 210f, 50f, 35f)
-//        fill(87.5f, 125f, 75f)
-//        rect(350f, 210f, 50f, 35f)
-
-        textSize(16f)
-        fill(0f, 0f, 0f)
-        text("1st", 75f, 255f)
-        text("2nd", 200f, 255f)
-        text("3rd", 325f, 255f)
-
         stroke(0f, 0f, 0f)
         strokeWeight(2f)
-
 
         fill(250f, 150f, 175f)
         rect(75f, 210f, 100f, 35f)
@@ -76,6 +57,12 @@ class Legend {
         rect(200f, 210f, 100f, 35f)
         fill(175f, 250f, 150f)
         rect(325f, 210f, 100f, 35f)
+
+        textSize(16f)
+        fill(0f, 0f, 0f)
+        text("1st", 75f, 255f)
+        text("2nd", 200f, 255f)
+        text("3rd", 325f, 255f)
     }
 
     private fun PApplet.direction() {
@@ -89,21 +76,14 @@ class Legend {
         strokeWeight(0f)
         fill(250f, 150f, 175f)
         rect(68f, 345f, 70f, 35f, 17.5f)
+        rect(252f, 345f, 70f, 35f, 17.5f)
 
         fill(175f, 250f, 150f)
         rect(148f, 345f, 70f, 35f, 17.5f)
+        rect(332f, 345f, 70f, 35f, 17.5f)
 
         fill(150f, 175f, 250f)
         rect(108f, 345f, 50f, 35f)
-
-
-        fill(125f, 75f, 87.5f)
-        rect(252f, 345f, 70f, 35f, 17.5f)
-
-        fill(87.5f, 125f, 75f)
-        rect(332f, 345f, 70f, 35f, 17.5f)
-
-        fill(75f, 87.5f, 125f)
         rect(292f, 345f, 50f, 35f)
 
 
